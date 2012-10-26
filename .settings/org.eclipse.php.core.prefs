@@ -1,0 +1,4 @@
+#Mon Sep 03 19:25:30 CST 2012
+eclipse.preferences.version=1
+include_path=5;com.zend.php.phpunit.CONTAINER\u00055;org.zend.php.framework.CONTAINER\u00050;/phpfunc
+use_asp_tags_as_php=false

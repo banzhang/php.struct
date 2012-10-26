@@ -1,0 +1,100 @@
+
+<html>
+
+<head>
+<title>DREAMmail RTM Demo Form</title>
+<style>
+h3 {font-family: verdana, arial;}
+td {font-family: verdana, arial; font-size: 12px;}
+input {font-family: verdana, arial; font-size: 12px;}
+textarea {font-family: verdana, arial; font-size: 12px;}
+</style>
+
+<script type="text/javascript">
+
+ function generateXML() {
+
+  document.rtm.rtm_body.value ='<?xml version="1.0" encoding="gb2312" ?>\r\n'+
+ '<RTMWeblet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '+ 
+ 'xsi:noNamespaceSchemaLocation="http://rtm.na.epidm.net/weblet/RTMWebletReq.xsd">\r\n' +
+'<RTMEmailToEmailAddress>\r\n' +
+'<ClientName></ClientName>\r\n' +
+'<SiteName></SiteName>\n' +
+'<CampaignName></CampaignName>\r\n' +
+'<MailingName></MailingName>\r\n' +
+'<ToEmailAddress>\r\n'+
+'<EventEmailAddress>\r\n' +
+'<EmailAddress></EmailAddress>\r\n' +
+
+'<EventVariables><Variable>\r\n' +
+                            
+                           ' <Name>EventVar:Subject1</Name>\r\n' +
+                           ' <Value><![CDATA[ title value ]]></Value> \r\n' +
+                            '</Variable> \r\n' +
+                           ' <Variable>\n' +
+                          '  <Name>EventVar:Body1</Name>\r\n' +
+                           ' <Value><![CDATA[ Body value ]]></Value>\r\n' +
+                           ' </Variable>\r\n' +
+                       ' </EventVariables>\r\n' +
+
+'</EventEmailAddress>\r\n' +
+'</ToEmailAddress>\r\n ' +
+'</RTMEmailToEmailAddress>\r\n' +
+'</RTMWeblet>';
+
+} 
+
+function validate() {
+
+if ((document.rtm.username.value == "") || (document.rtm.password.value == "") || (document.rtm.farm.value == "") || (document.rtm.url.value == "") || (document.rtm.rtm_body.value == "")) 
+{
+alert("Please provide the related informations.");
+return false;
+}
+
+}
+</script>
+
+</head>
+<h3>DREAMmail RTM Demo Form</h3>
+<form name=rtm method=post action="php_post_rtm_curl.php">
+<table bgcolor=#bbbbbb cellspacing=3 width=650>
+<tr><td colspan=4><b>RTM Weblet HTTP Header</b></td></tr>
+<tr>
+<td>Username: </td>
+<td><input type=text name=username size=20 maxlength=50 value=""></td>
+</tr>
+<tr>
+<td>Password: </td>
+<td><input type=password name=password size=20 maxlength=50 value=""></
+td>
+</tr>
+<tr>
+<td>DM Farm: </td>
+<td><input type=text name=farm size=20 maxlength=50 value="dm14"></td>
+</tr>
+<tr>
+<td>POST URL: </td>
+<td colspan=3><input type=text name=url size=80 maxlength=120
+value="https://rtm.na.epidm.net/weblet/weblet.dll"></td>
+</tr>
+</table>
+<table height=10><tr><td height=3></td></tr></table>
+<table bgcolor=#cccccc cellspacing=3 width=650>
+<tr><td colspan=4><b>RTM Weblet Post Content</b></td></tr>
+<tr>
+</tr>
+<tr>
+<td width=120 valign=top>RTM XML Body Variable Request: </td>
+<td colspan=3><textarea name=rtm_body cols=80 rows=15></textarea>
+</tr>
+
+<tr>
+<td align=right colspan=4>
+<input type=button value="Generate XML" onClick="generateXML()">
+<input type=submit value="Submit RTM" onClick="return validate()">
+</td>
+</tr>
+</table>
+</form>
+</html>
